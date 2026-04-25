@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#101417" />
+    <title>Cyber Base Calculator</title>
+    <link rel="icon" type="image/png" href="favicon.png?v=1" />
+    <link rel="apple-touch-icon" href="favicon.png?v=1" />
+    <link rel="stylesheet" href="styles.css?v=toolkit-1" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="workspace" aria-labelledby="app-title">
+        <header class="intro">
+          <div>
+            <p class="eyebrow">Cybersecurity toolkit</p>
+            <h1 id="app-title">Cyber Base Calculator</h1>
+            <p>
+              Conversoes rapidas para redes, CTFs, payloads e analise de logs:
+              bases numericas, CIDR/subnet e ASCII em hex ou binario.
+            </p>
+          </div>
+          <div class="signal-card" aria-label="Resumo de ferramentas">
+            <span>Tools</span>
+            <strong>3</strong>
+            <small>Base, Network, Text</small>
+          </div>
+        </header>
+
+        <nav class="tool-tabs" aria-label="Selecionar ferramenta">
+          <button class="tab-btn active" type="button" data-tool-target="base">
+            Base converter
+          </button>
+          <button class="tab-btn" type="button" data-tool-target="network">
+            CIDR calculator
+          </button>
+          <button class="tab-btn" type="button" data-tool-target="text">
+            ASCII converter
+          </button>
+        </nav>
+
+        <section class="tool-panel active" id="base-panel" data-tool-panel="base">
+          <div class="input-panel">
+            <div class="panel-heading">
+              <div>
+                <p class="section-kicker">Numeros</p>
+                <h2>Decimal, binario, hex e hextet</h2>
+              </div>
+              <button class="ghost small-btn" type="button" data-clear="base">Limpar</button>
+            </div>
+
+            <label for="base-input">Valor de entrada</label>
+            <textarea
+              id="base-input"
+              spellcheck="false"
+              autocomplete="off"
+              autocapitalize="off"
+              inputmode="text"
+              placeholder="Ex: 255, 0b11111111, 0xff, 192.168.1.1 ou 2001:0db8"
+            ></textarea>
+
+            <div class="controls">
+              <div class="field">
+                <label for="base-mode">Interpretar como</label>
+                <select id="base-mode">
+                  <option value="auto">Auto detectar</option>
+                  <option value="decimal">Decimal</option>
+                  <option value="binary">Binario</option>
+                  <option value="hex">Hexadecimal</option>
+                  <option value="hextet">Hextet IPv6</option>
+                </select>
+              </div>
+
+              <div class="quick-buttons">
+                <button type="button" data-example-tool="base" data-example="255">255</button>
+                <button type="button" data-example-tool="base" data-example="192.168.1.1">
+                  IPv4
+                </button>
+                <button type="button" data-example-tool="base" data-example="0xff">0xff</button>
+                <button type="button" data-example-tool="base" data-example="2001:0db8">
+                  IPv6
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="result-area">
+            <div class="result-toolbar">
+              <span>Resultados</span>
+              <button class="ghost small-btn" type="button" data-copy-all="base-results">
+                Copiar tudo
+              </button>
+            </div>
+            <div class="results-grid" id="base-results" aria-live="polite"></div>
+          </div>
+        </section>
+
+        <section class="tool-panel" id="network-panel" data-tool-panel="network" hidden>
+          <div class="input-panel">
+            <div class="panel-heading">
+              <div>
+                <p class="section-kicker">Redes</p>
+                <h2>IPv4 CIDR e subnet</h2>
+              </div>
+              <button class="ghost small-btn" type="button" data-clear="network">Limpar</button>
+            </div>
+
+            <label for="network-input">IP com CIDR</label>
+            <input
+              id="network-input"
+              type="text"
+              spellcheck="false"
+              autocomplete="off"
+              autocapitalize="off"
+              inputmode="text"
+              placeholder="Ex: 192.168.1.10/24"
+            />
+
+            <div class="quick-buttons">
+              <button type="button" data-example-tool="network" data-example="192.168.1.10/24">
+                /24 LAN
+              </button>
+              <button type="button" data-example-tool="network" data-example="10.10.5.34/20">
+                /20 private
+              </button>
+              <button type="button" data-example-tool="network" data-example="172.16.8.20/30">
+                /30 link
+              </button>
+              <button type="button" data-example-tool="network" data-example="8.8.8.8/32">
+                /32 host
+              </button>
+            </div>
+          </div>
+
+          <div class="result-area">
+            <div class="result-toolbar">
+              <span>Subnet info</span>
+              <button class="ghost small-btn" type="button" data-copy-all="network-results">
+                Copiar tudo
+              </button>
+            </div>
+            <div class="results-grid wide" id="network-results" aria-live="polite"></div>
+          </div>
+        </section>
+
+        <section class="tool-panel" id="text-panel" data-tool-panel="text" hidden>
+          <div class="input-panel">
+            <div class="panel-heading">
+              <div>
+                <p class="section-kicker">Payloads</p>
+                <h2>ASCII, hex e binario</h2>
+              </div>
+              <button class="ghost small-btn" type="button" data-clear="text">Limpar</button>
+            </div>
+
+            <label for="text-input">Texto ou bytes</label>
+            <textarea
+              id="text-input"
+              spellcheck="false"
+              autocomplete="off"
+              autocapitalize="off"
+              inputmode="text"
+              placeholder="Ex: admin, 61 64 6d 69 6e ou 01100001 01100100"
+            ></textarea>
+
+            <div class="controls">
+              <div class="field">
+                <label for="text-mode">Interpretar como</label>
+                <select id="text-mode">
+                  <option value="auto">Auto detectar</option>
+                  <option value="ascii">ASCII / UTF-8</option>
+                  <option value="hex">Hex bytes</option>
+                  <option value="binary">Binario bytes</option>
+                  <option value="decimal">Decimal bytes</option>
+                </select>
+              </div>
+
+              <div class="quick-buttons">
+                <button type="button" data-example-tool="text" data-example="admin">admin</button>
+                <button type="button" data-example-tool="text" data-example="61 64 6d 69 6e">
+                  hex
+                </button>
+                <button
+                  type="button"
+                  data-example-tool="text"
+                  data-example="01100001 01100100 01101101 01101001 01101110"
+                >
+                  bin
+                </button>
+                <button type="button" data-example-tool="text" data-example="97 100 109 105 110">
+                  dec
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="result-area">
+            <div class="result-toolbar">
+              <span>Encoded output</span>
+              <button class="ghost small-btn" type="button" data-copy-all="text-results">
+                Copiar tudo
+              </button>
+            </div>
+            <div class="results-grid" id="text-results" aria-live="polite"></div>
+          </div>
+        </section>
+
+        <section class="notes-grid" aria-label="Notas de uso">
+          <article>
+            <span>Network</span>
+            <p>Digite IPv4 com CIDR para descobrir mascara, rede, broadcast e hosts.</p>
+          </article>
+          <article>
+            <span>Payload</span>
+            <p>Converta strings para bytes hexadecimais ou binarios em analises rapidas.</p>
+          </article>
+          <article>
+            <span>Base</span>
+            <p>Use prefixos <code>0b</code> e <code>0x</code> para evitar ambiguidades.</p>
+          </article>
+        </section>
+
+        <p id="status-message" class="status" role="status"></p>
+      </section>
+    </main>
+
+    <script src="app.js?v=toolkit-1"></script>
+  </body>
+</html>
