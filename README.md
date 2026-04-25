@@ -34,3 +34,9 @@ Depois acesse `http://localhost:8000`.
 - `255` gera `0xff` e `11111111`
 - `192.168.1.10/24` gera rede, broadcast, mascara e hosts
 - `admin` gera `61 64 6d 69 6e`
+
+## Por que este projeto existe?
+
+Durante estudos de redes, SOC, Security+ e CTFs, é comum precisar converter rapidamente valores entre decimal, binário, hexadecimal, CIDR e bytes ASCII.
+
+Este projeto centraliza essas conversões em uma interface simples para acelerar análises técnicas e reforçar fundamentos de redes e segurança.
